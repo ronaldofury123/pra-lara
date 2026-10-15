@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pra Lara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..500&family=Caveat:wght@500;600&display=swap">
+<style>
+/* Layout: uma noite na praia — céu e lua no topo, a carta desce como maré até a areia no fim */
+:root {
+  --deep: #0b2530;      /* mar à noite */
+  --tide: #123a47;      /* água rasa */
+  --foam: #cfe9e2;      /* espuma */
+  --moon: #f5efe0;      /* lua, texto principal */
+  --sand: #e3cfae;      /* areia */
+  --tutu: #f0a9a1;      /* rosa de sapatilha */
+  --muted: #8fb3b0;
+  --display: "Italiana", "Didot", "Bodoni 72", Georgia, serif;
+  --body: "Literata", Georgia, "Times New Roman", serif;
+  --hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+img { max-width: 100%; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--deep);
+  color: var(--moon);
+  font-family: var(--body);
+  font-size: 1.08rem;
+  line-height: 1.7;
+  font-weight: 350;
+}
+.wrap {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2 { font-family: var(--display); font-weight: 400; text-wrap: balance; line-height: 1.05; margin: 0; }
+h2 { font-size: clamp(2.2rem, 7vw, 3.4rem); color: var(--foam); }
+p { margin: 0; }
+.eyebrow {
+  font-family: var(--body); font-size: .74rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--tutu); font-weight: 500;
+}
+.hand { font-family: var(--hand); font-size: 1.6rem; color: var(--sand); line-height: 1.2; }
+em { color: var(--foam); }
+
+/* HERO */
+.hero { position: relative; overflow: hidden; background: linear-gradient(180deg, #071a22 0%, var(--deep) 55%, var(--tide) 100%); }
+.hero .wrap { padding-block: 5.5rem 9rem; position: relative; z-index: 2; display: grid; gap: 1.2rem; }
+.moon {
+  position: absolute; z-index: 1; top: 2.5rem; right: max(8%, 24px);
+  width: clamp(80px, 18vw, 140px); aspect-ratio: 1; max-width: 100%; border-radius: 50%;
+  background: radial-gradient(circle at 38% 36%, #fffaf0 0%, var(--moon) 45%, #d9cfb8 100%);
+  box-shadow: 0 0 60px 10px rgba(245,239,224,.18);
+}
+.hero h1 { font-size: clamp(5rem, 22vw, 11rem); color: var(--moon); letter-spacing: .02em; }
+.hero h1 span { color: var(--tutu); }
+.hero .lede { max-width: 30rem; color: var(--foam); font-size: 1.15rem; }
+#waves { position: absolute; left: 0; bottom: 0; width: 100%; height: 150px; z-index: 1; display: block; }
+.dragonfly { position: absolute; z-index: 2; left: 62%; top: 42%; width: 64px; animation: hover 6s ease-in-out infinite; }
+@keyframes hover { 0%,100% { transform: translate(0,0) rotate(-6deg); } 50% { transform: translate(-18px,-10px) rotate(4deg); } }
+
+section { padding-block: 4.5rem; }
+section .wrap { display: grid; gap: 1.4rem; }
+.tide { background: var(--tide); }
+
+/* A frase principal */
+.name-block { display: grid; gap: .3rem; padding-block: 1rem; }
+.name-block .not { font-family: var(--display); font-size: clamp(1.8rem, 6vw, 2.6rem); color: var(--muted); text-decoration: line-through; text-decoration-thickness: 1px; }
+.name-block .yes { font-family: var(--display); font-size: clamp(3.6rem, 14vw, 6.5rem); color: var(--tutu); line-height: 1; }
+
+/* Dança: glossário de passos */
+.steps { display: grid; gap: 0; border-top: 1px solid rgba(207,233,226,.18); }
+.step { display: grid; grid-template-columns: 9.5rem 1fr; gap: 1.2rem; padding-block: 1.1rem; border-bottom: 1px solid rgba(207,233,226,.18); }
+.step dt { font-family: var(--display); font-size: 1.7rem; color: var(--sand); line-height: 1.1; }
+.step dt small { display: block; font-family: var(--body); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: .35rem; }
+.step dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .step { grid-template-columns: 1fr; gap: .4rem; } }
+
+/* Bichos */
+.creatures { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 2rem 1.6rem; }
+.creature { display: grid; gap: .6rem; align-content: start; min-width: 0; }
+.creature svg { width: 72px; height: 48px; }
+.creature h3 { margin: 0; font-family: var(--display); font-weight: 400; font-size: 1.9rem; color: var(--foam); }
+.creature p { font-size: 1rem; }
+@media (max-width: 560px) { .creatures { grid-template-columns: 1fr; } }
+
+/* Referências */
+.refs { display: grid; gap: 1.6rem; }
+.ref { display: grid; gap: .4rem; padding-left: 1.1rem; border-left: 1px solid var(--tutu); }
+.ref .src { font-size: .74rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.ref h3 { margin: 0; font-family: var(--display); font-weight: 400; font-size: 1.7rem; color: var(--sand); }
+
+/* Areia */
+.shore { background: linear-gradient(180deg, var(--tide) 0%, #2c4a4c 30%, #8a7a63 100%); }
+.shore .wrap { padding-block: 2rem 5rem; }
+.letter { background: var(--sand); color: #2a2620; padding: clamp(1.4rem, 5vw, 2.6rem); border-radius: 3px; display: grid; gap: 1.1rem; box-shadow: 0 20px 50px -20px rgba(0,0,0,.5); }
+.letter p { font-size: 1.05rem; }
+.letter .sign { font-family: var(--hand); font-size: 2rem; color: #6b3a35; line-height: 1.1; }
+.cricket-btn {
+  justify-self: start; font: inherit; font-size: .9rem; background: transparent; color: #2a2620;
+  border: 1px solid #2a2620; border-radius: 999px; padding: .5rem 1.1rem; cursor: pointer;
+}
+.cricket-btn:hover { background: #2a2620; color: var(--sand); }
+.cricket-btn:focus-visible { outline: 2px solid #6b3a35; outline-offset: 3px; }
+#chirp { font-family: var(--hand); font-size: 1.5rem; color: #6b3a35; min-height: 1.8rem; }
+footer { text-align: center; padding-block: 2rem; font-size: .8rem; color: var(--moon); opacity: .8; background: #8a7a63; }
+
+/* Celular */
+@media (max-width: 520px) {
+  body { font-size: 1.02rem; line-height: 1.65; }
+  .hero .wrap { padding-block: 7.5rem 7rem; gap: 1rem; }
+  .moon { top: 1.4rem; right: 20px; width: 78px; }
+  .dragonfly { left: auto; right: 24px; top: auto; bottom: 120px; width: 48px; }
+  .hero h1 { font-size: clamp(4.2rem, 26vw, 6rem); }
+  .hero .lede { font-size: 1.05rem; }
+  #waves { height: 100px; }
+  section { padding-block: 3.2rem; }
+  section .wrap { gap: 1.1rem; }
+  h2 { font-size: clamp(2rem, 10vw, 2.6rem); }
+  .hand { font-size: 1.45rem; }
+  .creatures { gap: 2.2rem; }
+  .creature svg { width: 60px; height: 40px; }
+  .step dt { font-size: 1.5rem; }
+  .ref h3 { font-size: 1.5rem; }
+  .shore .wrap { padding-block: 1.5rem 3.5rem; }
+  .letter { padding: 1.4rem 1.2rem; }
+  .cricket-btn { justify-self: stretch; padding: .9rem 1rem; font-size: 1rem; min-height: 48px; }
+}
+.cricket-btn { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+
+@media (prefers-reduced-motion: reduce) { .dragonfly { animation: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="moon" aria-hidden="true"></div>
+  <svg class="dragonfly" viewBox="0 0 64 40" aria-hidden="true">
+    <ellipse cx="22" cy="12" rx="18" ry="5" fill="#cfe9e2" opacity=".55" transform="rotate(-12 22 12)"/>
+    <ellipse cx="42" cy="12" rx="18" ry="5" fill="#cfe9e2" opacity=".55" transform="rotate(12 42 12)"/>
+    <ellipse cx="22" cy="22" rx="15" ry="4" fill="#cfe9e2" opacity=".4" transform="rotate(10 22 22)"/>
+    <ellipse cx="42" cy="22" rx="15" ry="4" fill="#cfe9e2" opacity=".4" transform="rotate(-10 42 22)"/>
+    <rect x="30.5" y="8" width="3" height="30" rx="1.5" fill="#f0a9a1"/>
+    <circle cx="32" cy="7" r="3.5" fill="#f0a9a1"/>
+  </svg>
+  <div class="wrap">
+    <p class="eyebrow">uma carta com cheiro de maresia</p>
+    <h1>Lara<span>.</span></h1>
+    <p class="lede">Fiz esse cantinho pra você ler quando o mundo estiver barulhento demais. É só um lembrete de quem você é, escrito por alguém que te vê de verdade.</p>
+  </div>
+  <canvas id="waves" aria-hidden="true"></canvas>
+</header>
+
+<main>
+  <section class="tide">
+    <div class="wrap">
+      <p class="eyebrow">antes de tudo</p>
+      <h2>Obrigado.</h2>
+      <p>Obrigado pela sua amizade. Ela é daquelas que fazem diferença sem fazer barulho, igual maré que vai mudando a praia aos pouquinhos.</p>
+      <p>E obrigado por ter me arrumado o emprego. Você não precisava, e fez mesmo assim. Isso mudou muita coisa pra mim, e eu não esqueço. Cada dia que eu vou trabalhar tem um pedacinho seu ali.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">o mais importante</p>
+      <p>Eu sinto que nos últimos tempos você anda meio longe de si mesma. Como se tivesse que vestir um figurino o dia inteiro, cumprir um papel, ser quem esperam. E tudo bem cansar disso. Mas eu quero que você saiba de uma coisa:</p>
+      <div class="name-block" aria-label="Não Maria Eduarda. Lara.">
+        <span class="not">“Maria Eduarda”</span>
+        <span class="yes">Lara.</span>
+      </div>
+      <p>Comigo você nunca precisa ser a versão formal, a que agrada, a que aguenta tudo calada. Comigo você pode ser sempre a Lara. A que ama dança, que fica boba com um gato, que se acalma olhando o mar. Essa é a que eu conheço, e é dela que eu sou amigo.</p>
+      <p class="hand">Não se perde em si mesma, tá? E se perder, eu te lembro o caminho.</p>
+    </div>
+  </section>
+
+  <section class="tide">
+    <div class="wrap">
+      <p class="eyebrow">o que a dança já te ensinou</p>
+      <h2>Pequeno dicionário de passos</h2>
+      <p>Você sabe mais sobre se reencontrar do que imagina. Tá tudo nos passos que você ama.</p>
+      <dl class="steps">
+        <div class="step">
+          <dt>Plié<small>ballet · dobrar</small></dt>
+          <dd>Todo salto começa dobrando os joelhos. Às vezes a gente se abaixa um pouco antes de subir. Isso não é cair, é tomar impulso.</dd>
+        </div>
+        <div class="step">
+          <dt>Relevé<small>ballet · elevar</small></dt>
+          <dd>Subir na meia-ponta exige força nos pés e calma no resto do corpo. Você já tem as duas coisas.</dd>
+        </div>
+        <div class="step">
+          <dt>Spotting<small>pirueta · o ponto fixo</small></dt>
+          <dd>Pra girar sem ficar tonta, a bailarina escolhe um ponto e volta o olhar pra ele a cada volta. Quando a vida girar demais, volta o olhar pra você. Pra Lara.</dd>
+        </div>
+        <div class="step">
+          <dt>Swing<small>jazz antigo · balanço</small></dt>
+          <dd>No jazz dos anos 20 e 30, errar o tempo e transformar o erro em estilo fazia parte da graça. Ninguém dança Charleston perfeitinho. Dança com alegria.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">seus bichos</p>
+      <h2>Quatro amigos que também acreditam em você</h2>
+      <div class="creatures">
+        <div class="creature">
+          <svg viewBox="0 0 72 48" aria-hidden="true">
+            <path d="M6 28 C6 14 30 10 46 18 C54 22 58 26 60 22 L68 12 L66 26 L70 36 L60 30 C54 40 26 44 12 38 C8 36 6 32 6 28 Z" fill="#8fb3b0"/>
+            <circle cx="18" cy="26" r="1.8" fill="#0b2530"/>
+            <path d="M16 12 C14 6 18 2 20 6 M20 12 C20 6 24 4 24 8" stroke="#cfe9e2" stroke-width="1.5" fill="none"/>
+          </svg>
+          <h3>Baleia</h3>
+          <p>As baleias cantam pra se encontrar no oceano inteiro, mesmo a quilômetros de distância. Se um dia você se sentir sozinha no fundo do mar, canta. Alguém vai ouvir. Eu vou.</p>
+        </div>
+        <div class="creature">
+          <svg viewBox="0 0 72 48" aria-hidden="true">
+            <ellipse cx="24" cy="16" rx="16" ry="5" fill="#cfe9e2" opacity=".6" transform="rotate(-10 24 16)"/>
+            <ellipse cx="48" cy="16" rx="16" ry="5" fill="#cfe9e2" opacity=".6" transform="rotate(10 48 16)"/>
+            <rect x="34.5" y="10" width="3" height="34" rx="1.5" fill="#f0a9a1"/>
+            <circle cx="36" cy="9" r="3.5" fill="#f0a9a1"/>
+          </svg>
+          <h3>Libélula</h3>
+          <p>Ela passa a maior parte da vida debaixo d'água antes de ganhar asas. Fase escondida não é fase perdida. Tem coisa se formando aí dentro.</p>
+        </div>
+        <div class="creature">
+          <svg viewBox="0 0 72 48" aria-hidden="true">
+            <path d="M20 44 C14 44 12 30 18 24 L16 10 L24 18 L36 18 L44 10 L42 24 C48 30 46 44 40 44 Z" fill="#e3cfae"/>
+            <circle cx="25" cy="28" r="1.8" fill="#0b2530"/><circle cx="35" cy="28" r="1.8" fill="#0b2530"/>
+            <path d="M46 40 C58 40 62 30 56 24" stroke="#e3cfae" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+          <h3>Gato</h3>
+          <p>Gato não pede desculpa por ser gato. Dorme quando precisa, some quando quer silêncio, volta quando tá pronto. Se dá esse direito também.</p>
+        </div>
+        <div class="creature">
+          <svg viewBox="0 0 72 48" aria-hidden="true">
+            <ellipse cx="34" cy="28" rx="18" ry="7" fill="#8fb3b0"/>
+            <circle cx="52" cy="26" r="5" fill="#8fb3b0"/>
+            <path d="M54 22 C60 10 66 8 70 6 M52 21 C56 8 62 4 66 2" stroke="#cfe9e2" stroke-width="1.2" fill="none"/>
+            <path d="M26 32 L18 44 M38 34 L44 44 M20 30 L10 40" stroke="#8fb3b0" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </svg>
+          <h3>Grilo</h3>
+          <p>O grilo canta justamente quando fica escuro. Ele não espera o dia clarear pra fazer música. Nas noites difíceis, sua voz continua valendo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tide">
+    <div class="wrap">
+      <p class="eyebrow">das coisas que a gente assiste e lê</p>
+      <h2>Quatro lembretes</h2>
+      <div class="refs">
+        <div class="ref">
+          <span class="src">Outer Banks</span>
+          <h3>Seja Pogue</h3>
+          <p>Os Pogues não têm muito, mas têm uns aos outros, a praia e a coragem de ir atrás do que importa. Lembra disso: você tem gente do seu lado, e o paraíso às vezes é só um fim de tarde de pé na areia com quem te conhece.</p>
+        </div>
+        <div class="ref">
+          <span class="src">Cyberpunk: Edgerunners</span>
+          <h3>A lua da Lucy</h3>
+          <p>Numa cidade que engole todo mundo, a Lucy guardava um sonho só dela: a lua. Night City tenta fazer a gente esquecer quem é. Guarda a sua lua, Lara. Aquilo que é só seu, que ninguém pode comprar nem apagar.</p>
+        </div>
+        <div class="ref">
+          <span class="src">Quem é Você, Alasca?</span>
+          <h3>O labirinto e o Grande Talvez</h3>
+          <p>O livro inteiro pergunta como sair do labirinto. Talvez a saída não seja correr mais rápido, e sim parar, respirar e lembrar quem você era antes de entrar nele. Do outro lado ainda tem o Grande Talvez esperando por você.</p>
+        </div>
+        <div class="ref">
+          <span class="src">Desenfreados · M. Kelly</span>
+          <h3>A Ryen de antes ainda está lá</h3>
+          <p>A Ryen volta pra casa depois de cinco anos, endurecida e carregando uma culpa que nem sempre é dela. Mas a menina doce que ela era não sumiu, só ficou guardada debaixo da armadura. Com você é igual, Lara: dá pra ficar mais forte sem precisar ficar fria. E dá pra largar o peso que não é seu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="shore">
+    <div class="wrap">
+      <div class="letter">
+        <p>Lara, se você chegou até aqui: respira fundo, tipo quem acabou de sair do mar.</p>
+        <p>Você não precisa resolver tudo hoje. Só precisa não esquecer de você no meio do caminho. E se esquecer um pouquinho, tudo bem, eu tô aqui pra te lembrar quantas vezes forem precisas.</p>
+        <p>Obrigado por ser minha amiga. De verdade.</p>
+        <p class="sign">com carinho de amigo,<br>sempre do seu lado</p>
+        <button class="cricket-btn" id="cricket-btn" type="button">Ouvir o grilo</button>
+        <p id="chirp" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>feito pra Lara · com mar, dança e bichinhos</footer>
+
+<script>
+(function () {
+  var c = document.getElementById('waves');
+  var ctx = c.getContext('2d');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var w, h, dpr;
+  function size() {
+    dpr = window.devicePixelRatio || 1;
+    w = c.clientWidth; h = c.clientHeight;
+    c.width = w * dpr; c.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  var layers = [
+    { y: .35, amp: 10, len: 260, speed: .00035, color: 'rgba(143,179,176,.28)' },
+    { y: .55, amp: 8,  len: 190, speed: .0005,  color: 'rgba(207,233,226,.22)' },
+    { y: .75, amp: 6,  len: 140, speed: .0007,  color: '#123a47' }
+  ];
+  function draw(t) {
+    ctx.clearRect(0, 0, w, h);
+    layers.forEach(function (L, i) {
+      ctx.beginPath();
+      ctx.moveTo(0, h);
+      for (var x = 0; x <= w; x += 6) {
+        var y = h * L.y + Math.sin(x / L.len * Math.PI * 2 + t * L.speed + i) * L.amp
+                        + Math.sin(x / (L.len * .5) + t * L.speed * 1.6) * (L.amp * .35);
+        ctx.lineTo(x, y);
+      }
+      ctx.lineTo(w, h); ctx.closePath();
+      ctx.fillStyle = L.color; ctx.fill();
+    });
+    if (!reduce) requestAnimationFrame(draw);
+  }
+  size(); window.addEventListener('resize', size);
+  if (reduce) draw(0); else requestAnimationFrame(draw);
+
+  var msgs = [
+    'cri-cri... você é a Lara.',
+    'cri-cri... isso também passa.',
+    'cri-cri... sua voz vale, mesmo no escuro.',
+    'cri-cri... tem um amigo aqui.',
+    'cri-cri... volta pro seu ponto fixo.'
+  ];
+  var i = 0;
+  document.getElementById('cricket-btn').addEventListener('click', function () {
+    document.getElementById('chirp').textContent = msgs[i % msgs.length];
+    i++;
+  });
+})();
+</script>
+</body>
+</html>
