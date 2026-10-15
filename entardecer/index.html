@@ -72,6 +72,15 @@ section .wrap { display: grid; gap: 1.2rem; }
 .s4 { background: #331d38; }
 .s5 { background: linear-gradient(180deg, #331d38 0%, var(--dusk) 100%); }
 
+/* a frase dela */
+.quote { margin: .6rem 0 .4rem; display: grid; gap: .8rem; padding-block: 1.6rem; border-top: 1px solid rgba(247,184,103,.4); border-bottom: 1px solid rgba(247,184,103,.4); }
+.quote blockquote { margin: 0; font-family: var(--display); font-style: italic; font-size: clamp(1.9rem, 8.5vw, 3rem); line-height: 1.12; color: var(--cream); text-wrap: balance; }
+.quote figcaption { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--haze); }
+.verdict { display: grid; gap: .15rem; }
+.verdict .was { color: var(--haze); font-size: 1rem; }
+.verdict .is { font-family: var(--display); font-size: clamp(1.6rem, 7vw, 2.2rem); color: var(--gold); line-height: 1.15; }
+.verdict .joke { font-family: var(--hand); font-size: 1.9rem; color: var(--rose); line-height: 1.1; }
+
 /* nomes */
 .names { display: grid; gap: 1rem; padding-block: .6rem; }
 .names div { display: grid; gap: .1rem; }
@@ -186,6 +195,15 @@ footer { text-align: center; font-size: .78rem; color: var(--haze); padding-bloc
     <div class="wrap">
       <p class="hour">18h14 · a maré</p>
       <h2>A gente se afasta, mas sempre volta</h2>
+      <figure class="quote">
+        <blockquote>“não se acostuma cmg, vou sumir em menos de uma semana”</blockquote>
+        <figcaption>Lara, lá no começo</figcaption>
+        <div class="verdict">
+          <span class="was">prazo prometido: <s>menos de 1 semana</s></span>
+          <span class="is">tempo real: mais de 1 ano</span>
+          <span class="joke">e contando. péssima em sumir, hein.</span>
+        </div>
+      </figure>
       <p>Teve vezes em que a gente sumiu um do outro. Semanas sem conversar direito, cada um enrolado na própria vida. E aí, do nada, uma mensagem besta, um meme, um "tá viva?", e pronto: parecia que nem tinha passado tempo nenhum.</p>
       <p>Amizade assim é igual maré. O mar recua, a areia fica seca por um tempo, mas a água sempre volta pro mesmo lugar. Ninguém olha a maré baixa e acha que o mar foi embora pra sempre.</p>
       <p>Então se um dia a gente se afastar de novo, tá tudo bem. Eu sei que a gente volta. A gente sempre volta.</p>
