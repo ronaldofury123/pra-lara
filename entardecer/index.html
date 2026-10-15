@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lara ao Entardecer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Nanum+Pen+Script&display=swap">
+<style>
+/* Layout: a página é uma tarde inteira — começa na hora dourada, desce pelo céu rosado e termina nas primeiras estrelas */
+:root {
+  --dusk: #2a1830;      /* céu depois que o sol some */
+  --plum: #3d2240;      /* faixa intermediária */
+  --rose: #e07a7f;      /* nuvem rosada */
+  --gold: #f7b867;      /* sol baixo */
+  --cream: #fbead6;     /* luz na areia, texto principal */
+  --haze: #c7a3b3;      /* texto secundário */
+  --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --body: "Newsreader", Georgia, "Times New Roman", serif;
+  --hand: "Nanum Pen Script", "Segoe Print", "Bradley Hand", cursive;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+img { max-width: 100%; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--dusk);
+  color: var(--cream);
+  font-family: var(--body);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  font-weight: 350;
+  -webkit-text-size-adjust: 100%;
+}
+.wrap {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding-left: max(18px, env(safe-area-inset-left, 0px));
+  padding-right: max(18px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; line-height: 1.05; }
+h2 { font-size: clamp(2.1rem, 9vw, 3.2rem); font-style: italic; color: var(--gold); }
+p { margin: 0; }
+.hour {
+  font-size: .72rem; letter-spacing: .24em; text-transform: uppercase; font-weight: 500;
+  color: var(--rose); font-variant-numeric: tabular-nums;
+}
+.hand { font-family: var(--hand); font-size: 2rem; line-height: 1.1; color: var(--gold); }
+
+/* HERO: o sol descendo no mar */
+.hero { position: relative; overflow: hidden; background: #f3a35f; }
+#sky { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero .wrap { position: relative; z-index: 2; padding-block: 4.5rem 14rem; display: grid; gap: 1rem; }
+.hero .hour { color: #6b2f3a; }
+.hero h1 { font-size: clamp(4.4rem, 24vw, 9.5rem); color: #3a1a2c; font-style: italic; letter-spacing: -.01em; }
+.hero .lede { max-width: 26rem; color: #3a1a2c; font-size: 1.12rem; font-weight: 400; }
+.replay {
+  position: absolute; z-index: 3; right: max(16px, env(safe-area-inset-right, 0px)); bottom: 16px;
+  font: inherit; font-size: .85rem; color: var(--cream); background: rgba(42,24,48,.45);
+  border: 1px solid rgba(251,234,214,.5); border-radius: 999px; padding: .55rem 1rem; min-height: 44px;
+  cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+.replay:focus-visible, .chirp-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* faixas de céu: cada seção é uma hora mais tarde */
+section { padding-block: 3.8rem; }
+section .wrap { display: grid; gap: 1.2rem; }
+.s1 { background: linear-gradient(180deg, #5a2a45 0%, var(--plum) 100%); }
+.s2 { background: var(--plum); }
+.s3 { background: linear-gradient(180deg, var(--plum) 0%, #331d38 100%); }
+.s4 { background: #331d38; }
+.s5 { background: linear-gradient(180deg, #331d38 0%, var(--dusk) 100%); }
+
+/* nomes */
+.names { display: grid; gap: 1rem; padding-block: .6rem; }
+.names div { display: grid; gap: .1rem; }
+.names .label { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--haze); }
+.names .md { font-family: var(--display); font-size: clamp(1.5rem, 6vw, 2rem); color: var(--haze); }
+.names .lara { font-family: var(--display); font-style: italic; font-size: clamp(3.4rem, 16vw, 5.6rem); color: var(--rose); line-height: 1; }
+
+/* aula de dança, na ordem real de uma aula */
+.class { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.6rem; }
+.class li { display: grid; gap: .3rem; }
+.class .when { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--haze); }
+.class h3 { font-size: 1.8rem; color: var(--cream); font-style: italic; }
+
+/* bichos */
+.beings { display: grid; gap: 2rem; }
+.being { display: grid; grid-template-columns: 56px 1fr; gap: 1rem; align-items: start; }
+.being svg { width: 56px; height: 56px; }
+.being div { display: grid; gap: .3rem; min-width: 0; }
+.being h3 { font-size: 1.6rem; color: var(--gold); }
+.calc {
+  margin-top: .4rem; display: grid; gap: .5rem; padding: .9rem 1rem;
+  border: 1px solid rgba(247,184,103,.35); border-radius: 6px;
+}
+.calc label { font-size: .9rem; color: var(--haze); }
+.calc input {
+  width: 100%; accent-color: var(--gold); height: 32px;
+}
+.calc output { font-family: var(--display); font-size: 1.3rem; color: var(--cream); font-variant-numeric: tabular-nums; }
+
+/* referências */
+.refs { display: grid; gap: 1.8rem; }
+.ref { display: grid; gap: .35rem; }
+.ref .src { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--rose); }
+.ref h3 { font-size: 1.6rem; font-style: italic; color: var(--cream); }
+
+/* estrelas */
+.night { position: relative; background: var(--dusk); overflow: hidden; }
+#stars { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.night .wrap { position: relative; z-index: 1; padding-block: 4rem 4.5rem; display: grid; gap: 1.2rem; }
+.note {
+  background: rgba(251,234,214,.06); border: 1px solid rgba(251,234,214,.18);
+  border-radius: 6px; padding: clamp(1.3rem, 5vw, 2.2rem); display: grid; gap: 1rem;
+}
+.note .sign { font-family: var(--hand); font-size: 2.2rem; color: var(--gold); line-height: 1.05; }
+.chirp-btn {
+  font: inherit; font-size: 1rem; color: var(--dusk); background: var(--gold); border: 0;
+  border-radius: 999px; padding: .85rem 1.2rem; min-height: 48px; cursor: pointer;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+#wish { font-family: var(--hand); font-size: 1.8rem; color: var(--rose); min-height: 2rem; line-height: 1.1; }
+footer { text-align: center; font-size: .78rem; color: var(--haze); padding-block: 1.5rem 2.5rem; background: var(--dusk); }
+
+@media (min-width: 640px) {
+  .names { grid-template-columns: 1fr 1.4fr; align-items: end; }
+  .beings { grid-template-columns: 1fr 1fr; gap: 2.4rem 2rem; }
+  .chirp-btn { justify-self: start; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="hour">17h52 · hora dourada</p>
+    <h1>Lara</h1>
+    <p class="lede">Mais uma carta, dessa vez na hora em que o céu fica cor de pêssego e tudo desacelera. Senta na areia comigo um pouquinho.</p>
+  </div>
+  <button class="replay" id="replay" type="button">Ver o sol se pôr de novo</button>
+</header>
+
+<main>
+  <section class="s1">
+    <div class="wrap">
+      <p class="hour">18h00 · o sol tocando o mar</p>
+      <h2>Sobre o pôr do sol</h2>
+      <p>Tem gente que acha o pôr do sol triste, porque parece um fim. Mas o sol não acaba quando some. Ele só vai iluminar outro lado do mundo por um tempo e volta amanhã, inteirinho, do mesmo jeito.</p>
+      <p>Se você anda sentindo que sua luz sumiu, pensa nisso. Ela não foi embora. Às vezes a gente só tá no lado escuro da volta.</p>
+    </div>
+  </section>
+
+  <section class="s2">
+    <div class="wrap">
+      <p class="hour">18h08 · obrigado</p>
+      <h2>O que eu nunca te disse direito</h2>
+      <p>Quando você me indicou pro emprego, você colocou seu nome junto com o meu. Você confiou em mim antes de eu mesmo confiar. Isso é coisa que pouca gente faz, e eu sinto isso todo dia que bato o ponto.</p>
+      <p>E a sua amizade é aquele tipo de companhia que não cobra nada. A gente conversa, ri, reclama da vida, e eu saio mais leve. Obrigado por isso, de verdade.</p>
+    </div>
+  </section>
+
+  <section class="s1">
+    <div class="wrap">
+      <p class="hour">18h10 · rindo à toa</p>
+      <h2>As piadas que só a gente entende</h2>
+      <p>Eu lembro das nossas piadas. Das bobas, das sem sentido, das que a gente repetiu tanto que nem tem mais graça e mesmo assim continua tendo. Às vezes eu lembro de uma do nada, no meio do trabalho, e solto uma risada sozinho feito doido.</p>
+      <p>Piada interna é um tipo de idioma que só duas pessoas falam. E eu fico feliz de falar esse idioma com você.</p>
+      <p class="hand">(você sabe quais são. e tá rindo agora.)</p>
+    </div>
+  </section>
+
+  <section class="s2">
+    <div class="wrap">
+      <p class="hour">18h12 · sol e nuvem</p>
+      <h2>Os dias bons e os dias ruins</h2>
+      <p>A gente já viveu muita coisa boa. Conversa que virou madrugada, risada de doer a barriga, aquele alívio de contar uma coisa e saber que o outro entendeu.</p>
+      <p>E também teve os dias ruins. Dias em que um de nós tava pesado, sem paciência, sem vontade de falar. Dias em que a gente não soube o que dizer. Mas eu acho que é justamente isso que faz uma amizade ser de verdade: ela não existe só no dia bonito. O pôr do sol só fica daquela cor porque tem nuvem no céu.</p>
+    </div>
+  </section>
+
+  <section class="s1">
+    <div class="wrap">
+      <p class="hour">18h14 · a maré</p>
+      <h2>A gente se afasta, mas sempre volta</h2>
+      <p>Teve vezes em que a gente sumiu um do outro. Semanas sem conversar direito, cada um enrolado na própria vida. E aí, do nada, uma mensagem besta, um meme, um "tá viva?", e pronto: parecia que nem tinha passado tempo nenhum.</p>
+      <p>Amizade assim é igual maré. O mar recua, a areia fica seca por um tempo, mas a água sempre volta pro mesmo lugar. Ninguém olha a maré baixa e acha que o mar foi embora pra sempre.</p>
+      <p>Então se um dia a gente se afastar de novo, tá tudo bem. Eu sei que a gente volta. A gente sempre volta.</p>
+    </div>
+  </section>
+
+  <section class="s3">
+    <div class="wrap">
+      <p class="hour">18h16 · quem você é</p>
+      <h2>Dois nomes, uma pessoa</h2>
+      <div class="names">
+        <div>
+          <span class="label">como o mundo te chama</span>
+          <span class="md">Maria Eduarda</span>
+        </div>
+        <div>
+          <span class="label">quem você é comigo</span>
+          <span class="lara">Lara</span>
+        </div>
+      </div>
+      <p>A Maria Eduarda dá conta das obrigações, responde certinho, segura as pontas. Tudo bem ela existir. Mas ela não pode engolir a Lara.</p>
+      <p>A Lara é a que dança sozinha no quarto, que para tudo pra fazer carinho num gato, que fica quieta olhando o mar. Comigo você não precisa vestir figurino nenhum. Pode chegar como Lara, sempre.</p>
+      <p class="hand">não se perde de você, tá bom?</p>
+    </div>
+  </section>
+
+  <section class="s2">
+    <div class="wrap">
+      <p class="hour">18h21 · uma aula inteira</p>
+      <h2>O que a aula de dança ensina</h2>
+      <p>Toda aula de ballet segue a mesma ordem, do começo ao fim. E cada parte tem um recado.</p>
+      <ol class="class">
+        <li>
+          <span class="when">começo da aula</span>
+          <h3>A barra</h3>
+          <p>Até a primeira bailarina de uma companhia volta pra barra todo dia. Voltar pro básico não é regredir. É o que mantém o corpo firme pro resto.</p>
+        </li>
+        <li>
+          <span class="when">meio da aula</span>
+          <h3>Fouetté</h3>
+          <p>Aquele giro em que a perna chicoteia e dá impulso pra próxima volta. Cada volta alimenta a seguinte. Um dia bom puxa o outro, mesmo que comece pequeno.</p>
+        </li>
+        <li>
+          <span class="when">quando toca jazz</span>
+          <h3>Shim Sham</h3>
+          <p>No swing dos anos 30, o Shim Sham é a dança em que todo mundo entra na mesma fila e faz os mesmos passos juntos. Ninguém dança sozinho. Você também não precisa.</p>
+        </li>
+        <li>
+          <span class="when">fim da aula</span>
+          <h3>Révérence</h3>
+          <p>A aula termina com um agradecimento: à professora, ao pianista, ao próprio corpo. Você também merece agradecer a si mesma por aguentar tanta coisa.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="s3">
+    <div class="wrap">
+      <p class="hour">18h30 · seus bichos</p>
+      <h2>O que eles sabem que a gente esquece</h2>
+      <div class="beings">
+        <div class="being">
+          <svg viewBox="0 0 56 56" aria-hidden="true">
+            <path d="M24 4 C34 4 36 18 34 32 C33 42 30 48 28 50 L22 54 L26 48 C20 44 16 32 16 20 C16 10 18 4 24 4 Z" fill="#c7a3b3"/>
+            <circle cx="22" cy="14" r="1.6" fill="#2a1830"/>
+          </svg>
+          <div>
+            <h3>Baleia</h3>
+            <p>Os cachalotes dormem na vertical, boiando parados perto da superfície, todos juntos. Até o maior bicho do mar precisa parar. Descansar não é fraqueza.</p>
+          </div>
+        </div>
+        <div class="being">
+          <svg viewBox="0 0 56 56" aria-hidden="true">
+            <ellipse cx="18" cy="20" rx="14" ry="4.5" fill="#fbead6" opacity=".55" transform="rotate(-14 18 20)"/>
+            <ellipse cx="38" cy="20" rx="14" ry="4.5" fill="#fbead6" opacity=".55" transform="rotate(14 38 20)"/>
+            <ellipse cx="18" cy="28" rx="12" ry="3.5" fill="#fbead6" opacity=".4" transform="rotate(10 18 28)"/>
+            <ellipse cx="38" cy="28" rx="12" ry="3.5" fill="#fbead6" opacity=".4" transform="rotate(-10 38 28)"/>
+            <rect x="26.5" y="16" width="3" height="36" rx="1.5" fill="#e07a7f"/>
+            <circle cx="28" cy="14" r="3.5" fill="#e07a7f"/>
+          </svg>
+          <div>
+            <h3>Libélula</h3>
+            <p>Ela consegue voar pra trás, pros lados e ficar parada no ar. Dar uns passos pra trás às vezes faz parte do voo. Não quer dizer que você se perdeu.</p>
+          </div>
+        </div>
+        <div class="being">
+          <svg viewBox="0 0 56 56" aria-hidden="true">
+            <path d="M14 50 C8 50 8 34 14 28 L12 12 L20 20 L32 20 L40 12 L38 28 C44 34 44 50 38 50 Z" fill="#f7b867"/>
+            <path d="M20 31 q2 -2 4 0 M30 31 q2 -2 4 0" stroke="#2a1830" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <h3>Gato</h3>
+            <p>Gato também ronrona quando tá se acalmando, não só quando tá feliz. É o jeito dele de se cuidar. Descobre qual é o seu ronronar e usa sem culpa.</p>
+          </div>
+        </div>
+        <div class="being">
+          <svg viewBox="0 0 56 56" aria-hidden="true">
+            <ellipse cx="24" cy="34" rx="16" ry="6" fill="#c7a3b3"/>
+            <circle cx="40" cy="32" r="4.5" fill="#c7a3b3"/>
+            <path d="M42 28 C46 18 50 14 54 12 M40 28 C42 16 46 12 50 8" stroke="#fbead6" stroke-width="1.2" fill="none"/>
+            <path d="M16 38 L8 50 M28 40 L34 50 M12 36 L4 44" stroke="#c7a3b3" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <h3>Grilo</h3>
+            <p>O grilo canta mais rápido quando a noite tá quente. Dá até pra adivinhar a temperatura contando o canto dele. Quando o calor volta, a música acelera.</p>
+            <div class="calc">
+              <label for="chirps">Cantos do grilo em 25 segundos</label>
+              <input id="chirps" type="range" min="30" max="80" value="57">
+              <output id="temp" for="chirps">57 cantos ≈ 23 °C</output>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s4">
+    <div class="wrap">
+      <p class="hour">18h40 · histórias que a gente ama</p>
+      <h2>Quatro finais de tarde</h2>
+      <div class="refs">
+        <div class="ref">
+          <span class="src">Outer Banks</span>
+          <h3>O barco dos Pogues ao pôr do sol</h3>
+          <p>Os melhores momentos dos Pogues não são as perseguições. São eles juntos no barco, no fim da tarde, sem precisar provar nada pra ninguém. Você também merece fins de tarde assim, sem pressa e sem cobrança.</p>
+        </div>
+        <div class="ref">
+          <span class="src">Cyberpunk: Edgerunners</span>
+          <h3>A Lucy chegou na lua</h3>
+          <p>No fim, o sonho que parecia impossível aconteceu. A Lucy pisou na lua. Seus sonhos também não são grandes demais, mesmo quando a vida tá barulhenta igual Night City.</p>
+        </div>
+        <div class="ref">
+          <span class="src">Quem é Você, Alasca?</span>
+          <h3>A saída do labirinto</h3>
+          <p>O livro termina sugerindo que a saída do labirinto passa pelo perdão. Perdoar os outros, mas principalmente a si mesma. Se tem alguma coisa que você ainda se cobra, talvez seja hora de se perdoar.</p>
+        </div>
+        <div class="ref">
+          <span class="src">Desenfreados · M. Kelly</span>
+          <h3>Voltar pra casa</h3>
+          <p>A história começa com a Ryen voltando pra cidade onde cresceu, depois de anos longe. Voltar dá medo, porque a gente não sabe o que vai encontrar. Mas voltar pra si mesma é a volta que sempre vale a pena.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="night">
+    <canvas id="stars" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <p class="hour">18h52 · primeira estrela</p>
+      <div class="note">
+        <p>O sol já foi, Lara, e olha que bonito ficou o céu mesmo assim.</p>
+        <p>É isso que eu queria te lembrar: mesmo nos dias em que a luz parece ter ido embora, ainda tem beleza. Ainda tem você. E ainda tem um amigo aqui, torcendo, agradecido e do seu lado.</p>
+        <p>Nos dias bons e nos ruins, perto ou longe, falando todo dia ou sumidos por um tempo: a amizade continua aqui. Igual o sol, igual a maré. Sempre volta.</p>
+        <p class="sign">com carinho de amigo,<br>até o próximo pôr do sol</p>
+        <button class="chirp-btn" id="wish-btn" type="button">Fazer um pedido pra estrela</button>
+        <p id="wish" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>feito pra Lara · da hora dourada até as estrelas</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Céu do pôr do sol */
+  var sky = document.getElementById('sky'), sc = sky.getContext('2d');
+  var W, H, start = performance.now(), DUR = 14000;
+  function fit(c, ctx) {
+    var d = window.devicePixelRatio || 1;
+    c.width = c.clientWidth * d; c.height = c.clientHeight * d;
+    ctx.setTransform(d, 0, 0, d, 0, 0);
+  }
+  function mix(a, b, t) { return a.map(function (v, i) { return Math.round(v + (b[i] - v) * t); }); }
+  function rgb(c) { return 'rgb(' + c.join(',') + ')'; }
+  function drawSky(now) {
+    W = sky.clientWidth; H = sky.clientHeight;
+    var t = reduce ? 0.45 : Math.min(1, (now - start) / DUR);
+    var e = t * t * (3 - 2 * t);
+    var horizon = H - 120;
+    var g = sc.createLinearGradient(0, 0, 0, horizon);
+    g.addColorStop(0, rgb(mix([246, 178, 107], [120, 64, 110], e)));
+    g.addColorStop(.6, rgb(mix([248, 170, 110], [214, 110, 120], e)));
+    g.addColorStop(1, rgb(mix([252, 214, 150], [240, 150, 110], e)));
+    sc.fillStyle = g; sc.fillRect(0, 0, W, horizon);
+    /* sol */
+    var r = Math.min(W, 520) * 0.16;
+    var sx = W * 0.72, sy = horizon - r * 1.6 + e * r * 2.4;
+    sc.save();
+    sc.beginPath(); sc.rect(0, 0, W, horizon); sc.clip();
+    var glow = sc.createRadialGradient(sx, sy, r * .6, sx, sy, r * 3.2);
+    glow.addColorStop(0, 'rgba(255,226,170,.55)'); glow.addColorStop(1, 'rgba(255,226,170,0)');
+    sc.fillStyle = glow; sc.fillRect(0, 0, W, horizon);
+    sc.beginPath(); sc.arc(sx, sy, r, 0, Math.PI * 2);
+    sc.fillStyle = rgb(mix([255, 236, 190], [255, 170, 110], e)); sc.fill();
+    sc.restore();
+    /* mar */
+    var sea = sc.createLinearGradient(0, horizon, 0, H);
+    sea.addColorStop(0, rgb(mix([224, 128, 110], [110, 52, 82], e)));
+    sea.addColorStop(1, rgb(mix([90, 42, 69], [42, 24, 48], e)));
+    sc.fillStyle = sea; sc.fillRect(0, horizon, W, H - horizon);
+    /* reflexo do sol na água */
+    var k = (now / 900);
+    for (var i = 0; i < 9; i++) {
+      var y = horizon + 8 + i * 12;
+      var wdt = (r * 1.4) * (1 - i / 11) * (0.75 + 0.25 * Math.sin(k + i));
+      sc.fillStyle = 'rgba(255,214,150,' + (0.5 - i * 0.05) * (1 - e * 0.6) + ')';
+      sc.fillRect(sx - wdt / 2, y, wdt, 3);
+    }
+    if (!reduce) requestAnimationFrame(drawSky);
+  }
+
+  /* Estrelas */
+  var st = document.getElementById('stars'), stc = st.getContext('2d'), dots = [];
+  function seedStars() {
+    fit(st, stc); dots = [];
+    var n = Math.round(st.clientWidth * st.clientHeight / 5000);
+    for (var i = 0; i < n; i++) dots.push({ x: Math.random() * st.clientWidth, y: Math.random() * st.clientHeight, r: Math.random() * 1.3 + .3, p: Math.random() * 6 });
+  }
+  function drawStars(now) {
+    stc.clearRect(0, 0, st.clientWidth, st.clientHeight);
+    dots.forEach(function (d) {
+      var a = reduce ? .7 : .45 + .45 * Math.sin(now / 1200 + d.p);
+      stc.fillStyle = 'rgba(251,234,214,' + a + ')';
+      stc.beginPath(); stc.arc(d.x, d.y, d.r, 0, Math.PI * 2); stc.fill();
+    });
+    if (!reduce) requestAnimationFrame(drawStars);
+  }
+
+  function resize() { fit(sky, sc); seedStars(); if (reduce) { drawSky(0); drawStars(0); } }
+  resize(); window.addEventListener('resize', resize);
+  if (!reduce) { requestAnimationFrame(drawSky); requestAnimationFrame(drawStars); }
+
+  document.getElementById('replay').addEventListener('click', function () { start = performance.now(); if (reduce) drawSky(0); });
+
+  /* Grilo-termômetro: graus Celsius ≈ cantos em 25 s ÷ 3 + 4 */
+  var ch = document.getElementById('chirps'), out = document.getElementById('temp');
+  function upd() { var n = +ch.value; out.textContent = n + ' cantos ≈ ' + Math.round(n / 3 + 4) + ' °C'; }
+  ch.addEventListener('input', upd); upd();
+
+  var wishes = [
+    'que você se reconheça no espelho e sorria.',
+    'que a Lara nunca saia de cena.',
+    'que você tenha mais fins de tarde na praia.',
+    'que seu corpo lembre como é dançar à toa.',
+    'que você se perdoe pelo que não era culpa sua.',
+    'que você nunca esqueça que tem um amigo aqui.'
+  ];
+  var w = 0;
+  document.getElementById('wish-btn').addEventListener('click', function () {
+    document.getElementById('wish').textContent = '✦ ' + wishes[w % wishes.length];
+    w++;
+  });
+})();
+</script>
+</body>
+</html>
