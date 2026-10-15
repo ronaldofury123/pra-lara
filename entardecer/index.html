@@ -72,6 +72,12 @@ section .wrap { display: grid; gap: 1.2rem; }
 .s4 { background: #331d38; }
 .s5 { background: linear-gradient(180deg, #331d38 0%, var(--dusk) 100%); }
 
+/* rota entre as cidades */
+.route { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .8rem; padding-block: .6rem; }
+.route .city { font-family: var(--display); font-style: italic; font-size: clamp(1.4rem, 6vw, 1.9rem); color: var(--cream); }
+.route .line { height: 0; border-top: 2px dotted var(--gold); position: relative; min-width: 2rem; }
+.route .line::after { content: "≈ 100 km"; position: absolute; left: 50%; top: -1.6rem; transform: translateX(-50%); font-size: .72rem; letter-spacing: .14em; color: var(--haze); white-space: nowrap; }
+
 /* a frase dela */
 .quote { margin: .6rem 0 .4rem; display: grid; gap: .8rem; padding-block: 1.6rem; border-top: 1px solid rgba(247,184,103,.4); border-bottom: 1px solid rgba(247,184,103,.4); }
 .quote blockquote { margin: 0; font-family: var(--display); font-style: italic; font-size: clamp(1.9rem, 8.5vw, 3rem); line-height: 1.12; color: var(--cream); text-wrap: balance; }
@@ -148,7 +154,7 @@ footer { text-align: center; font-size: .78rem; color: var(--haze); padding-bloc
   <div class="wrap">
     <p class="hour">17h52 · hora dourada</p>
     <h1>Lara</h1>
-    <p class="lede">Mais uma carta, dessa vez na hora em que o céu fica cor de pêssego e tudo desacelera. Senta na areia comigo um pouquinho.</p>
+    <p class="lede">Mais uma carta, dessa vez na hora em que o céu fica cor de pêssego e tudo desacelera. Lê com calma, de Limeira, que eu escrevi daqui de Cajamar.</p>
   </div>
   <button class="replay" id="replay" type="button">Ver o sol se pôr de novo</button>
 </header>
@@ -191,6 +197,21 @@ footer { text-align: center; font-size: .78rem; color: var(--haze); padding-bloc
     </div>
   </section>
 
+  <section class="s2">
+    <div class="wrap">
+      <p class="hour">18h13 · Limeira → Cajamar</p>
+      <h2>Amigos que nunca se viram</h2>
+      <div class="route" aria-label="Limeira e Cajamar, cerca de cem quilômetros de distância">
+        <span class="city">Limeira</span>
+        <span class="line" aria-hidden="true"></span>
+        <span class="city">Cajamar</span>
+      </div>
+      <p>A gente nunca se viu pessoalmente. Nunca dividiu uma mesa, nunca andou na mesma rua. Tem uns cem e poucos quilômetros entre Limeira e Cajamar. E mesmo assim você é uma das pessoas que mais me conhece.</p>
+      <p>Tem gente que mora do lado e nunca vira amigo. A gente virou só por mensagem, áudio e meme. Acho que isso diz muito sobre o que essa amizade é: ela não depende de estar perto, ela depende da gente querer.</p>
+      <p>E tem uma coisa bonita: as duas cidades ficam tão perto no mapa que o sol se põe quase no mesmo minuto aí e aqui. Então toda vez que você olhar o céu ficando laranja, sabe que eu tô vendo o mesmo pôr do sol.</p>
+    </div>
+  </section>
+
   <section class="s1">
     <div class="wrap">
       <p class="hour">18h14 · a maré</p>
@@ -225,7 +246,7 @@ footer { text-align: center; font-size: .78rem; color: var(--haze); padding-bloc
         </div>
       </div>
       <p>A Maria Eduarda dá conta das obrigações, responde certinho, segura as pontas. Tudo bem ela existir. Mas ela não pode engolir a Lara.</p>
-      <p>A Lara é a que dança sozinha no quarto, que para tudo pra fazer carinho num gato, que fica quieta olhando o mar. Comigo você não precisa vestir figurino nenhum. Pode chegar como Lara, sempre.</p>
+      <p>A Lara é a que ama ballet e jazz antigo, que se derrete por um gato, que sonha com o mar. É ela que aparece nas nossas conversas, e é dela que eu sou amigo. Comigo você não precisa vestir figurino nenhum. Pode chegar como Lara, sempre.</p>
       <p class="hand">não se perde de você, tá bom?</p>
     </div>
   </section>
